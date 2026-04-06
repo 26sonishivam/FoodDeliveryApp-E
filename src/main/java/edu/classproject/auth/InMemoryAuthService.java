@@ -6,14 +6,24 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
+// dependency on user module (as per requirement)
+import edu.classproject.user.UserService;
+
 public class InMemoryAuthService implements AuthService {
 
     private Map<String, AuthSession> sessions = new HashMap<>();
 
+    // dependency (may be null for now)
+    private UserService userService;
+
+    public InMemoryAuthService(UserService userService) {
+        this.userService = userService;
+    }
+
     @Override
     public AuthSession login(String email, String password) {
 
-        // NOTE: No real password validation for now
+        // TODO: Replace with real validation using UserService
         String userId = email;
 
         String sessionId = UUID.randomUUID().toString();

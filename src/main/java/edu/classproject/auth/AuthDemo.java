@@ -4,7 +4,7 @@ public class AuthDemo {
 
     public static void main(String[] args) {
 
-        AuthService authService = new InMemoryAuthService();
+        AuthService authService = new InMemoryAuthService(null);
 
         // LOGIN
         AuthSession session = authService.login("user@gmail.com", "1234");
