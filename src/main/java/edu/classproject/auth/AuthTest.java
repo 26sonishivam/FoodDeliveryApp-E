@@ -1,12 +1,16 @@
 package edu.classproject.auth;
 
+import edu.classproject.user.InMemoryUserService;
+import edu.classproject.user.UserService;
+
 public class AuthTest {
 
     public static void main(String[] args) {
 
-        AuthService auth = new InMemoryAuthService(null);
+        UserService userService = new InMemoryUserService();
+        AuthService auth = new InMemoryAuthService(userService);
 
-        AuthSession session = auth.login("test@mail.com", "123");
+        AuthSession session = auth.signup("test@mail.com", "123");
 
         if (!auth.isSessionActive(session.sessionId())) {
             throw new RuntimeException("Test failed: session should be active");
